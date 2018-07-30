@@ -1,0 +1,141 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.login-box{
+	width: 450px;
+	height: 355px;
+	margin: 15% auto;
+	background-color: black;
+	border-radius: 10px;
+	opacity: 0.6;
+}
+.login-header{
+	height: 39px;
+	padding: 10px;
+	border-bottom: 1px solid aliceblue;
+}
+.login-admin{
+	width:100%;
+	height:100%;
+	display:none;
+	position:relative;
+}
+.admin-header{
+	height: 39px;
+	padding: 10px;
+	border-bottom: 1px solid aliceblue;
+}
+.admin-header h1{
+	text-align: center;
+	font-size: 25px;
+	line-height: 40px;
+	color: goldenrod;
+}
+.login-header h1{
+	text-align: center;
+	font-size: 25px;
+	line-height: 40px;
+	color: #F0F8FF;
+}
+.login-body,.login-form{
+	width: 250px;
+	margin: 50px auto;
+}
+.admin-body{
+	width: 250px;
+	margin: 270px auto;
+	position:relative;
+	top:11px;
+	left:-16px;
+}
+.admin-form{
+	width: 250px;
+	margin: 270px auto;
+}
+.login-text {
+	margin: 30px  auto;
+}
+.login-label{
+	display:inline-block;
+	width:210px;
+	height:30px;
+	margin:0 20px;
+	position: relative;
+}
+.login-label img{
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	left: 6px;
+	top: 2px;
+}
+.login-label input{
+	height: 30px;
+	width: 210px;
+	padding-left: 35px;
+}
+.login-foot{
+	width: 250px;
+	margin: 50px auto;
+}
+.login-action{
+	width: 49%;
+	height: 30px;
+	display: inline-block;
+	align-items: center;
+}
+.login-action input,#button{
+	height: 30px;
+	text-decoration:none;
+	display: block;
+	width: 70px;
+	font-size: 16px;
+	text-align: center;
+	margin: 0 auto;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	cursor: pointer;
+}
+#button{
+	color: grey;
+	background-color: ghostwhite;
+	opacity: .9;
+}
+#button:hover{
+	background-color: whitesmoke;
+	opacity: 1;
+}
+.login-action input{
+	color: #fff;
+	background-color: #009688;
+	opacity: .9;
+}
+.login-action input:hover{
+	opacity: 1;	
+}
+.login-label{
+	width:95%;
+	overflow:hidden;
+}
+.admin-label{
+	display:inline-block;
+	width:95px;
+	overflow:hidden;
+	vertical-align:middle;
+}
+.login-label span,.admin-label span{
+	display:inline-block;
+	width:80px;
+	color:lightblue;
+	text-align:center;
+	float:right;
+	cursor: pointer;
+	text-decoration:underline;
+}
+#admin,#user{
+	border:1px solid darggreen;
+	background-color:darkred;
+	color:lightyellow;
+	border-radius:5px;
+}

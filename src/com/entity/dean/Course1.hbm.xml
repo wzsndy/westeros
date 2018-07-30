@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.dean.Course1" table="t_course">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		<property name="majorId" type="integer" column="major_id"/>
+		<property name="text" type="string" column="text"/>
+		<property name="isRequired" type="string" column="isRequired"/>
+		<set name="score1" table="t_score" lazy="false" fetch="join">
+			<key column="course_id"/>
+			<one-to-many class="com.entity.dean.Score1"/>
+		</set>
+	</class>
+</hibernate-mapping>

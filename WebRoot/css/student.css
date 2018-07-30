@@ -1,0 +1,180 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style:none;
+	text-decoration: none;
+}
+.admin{
+	width:80%;
+	margin:0 auto;
+}
+.admin-head{
+	width:100%;
+	height:80px;
+	position:relative;
+	background-color: lightgoldenrodyellow;
+	border: 1px solid transparent;
+	border-radius:10px;
+}
+.student-page{
+	width: 100%;
+	height:770px;
+	margin: 0 auto;
+	border-radius: 10px;
+	background-color: floralwhite;
+}
+.admin-foot{
+	width:100%;
+	height:120px;
+	background-color:darkslategrey;
+}
+.logo{
+	width:60px;
+	height:60px;
+	border-radius:50%;
+	border:1px solid black;
+	position:absolute;
+	top:10px;
+	left:50px;
+	background: url(../img/dragon.jpg) -58px -8px / 184px 105px;
+}
+.title{
+	height:80px;
+	width:90%;
+	position:relative;
+	top:0px;
+	left:50px;
+	line-height:80px;
+	color:darkred;
+	text-align:center;
+	font-size:50;
+	font-family: fantasy;
+}
+.tool{
+	width:106px;
+	height:21px;
+	position:absolute;
+	right:5px;
+	top:55px;
+}
+.student-title{
+	width: 100%;
+	height: 50px;
+	background-color: darkslateblue;
+	font-size: 20px;
+	line-height: 45px;
+	vertical-align: middle;
+	text-align: center;
+	color: floralwhite;
+	border-radius: 10px;
+	text-shadow: 1px 0 1px antiquewhite;
+}
+.student-menu{
+	width: 25%;
+	height:720px;
+	float:left;
+	background-color: skyblue;
+	opacity: .8;
+	border: 1px solid transparent;
+	border-radius:10px;
+}
+.student-passowrd,.student-content{
+	width:74%;
+	height:720px;
+	float:right;
+}
+.student-menu ul{
+	width: 100%;
+	height: 100%;
+}
+.student-menu ul li{
+	line-height: 49px;
+	border-bottom: 1px solid antiquewhite;
+	text-align: center;
+	opacity: .8;
+}
+.student-menu ul li:last-child{
+	border-bottom: 1px solid transparent;
+}
+.student-menu ul li:hover{
+	border-bottom: 1px solid navajowhite;
+	opacity: 1;
+}
+.student-menu ul li a{
+	color: honeydew;
+	font-size: 16px;
+}
+.student-menu ul li a:hover{
+	color: lightyellow;
+}
+legend{
+	text-align:center;
+}
+table{
+	width:45%;
+	border-collapse: collapse;
+	border: 1px solid transparent;
+}
+table tr{
+	height: 40px;
+	border: 1px solid transparent;
+}
+table tr:hover{
+	background-color: papayawhip;
+}
+table tr td{
+	border-bottom: 1px solid papayawhip;
+	color: darkblue;
+}
+.student-passowrd form{
+	width:700px;
+	margin: 0 auto;
+}
+.password_input{
+	position:relative;
+}
+span{
+	position: absolute;
+	width:110px;
+	color: orangered;
+	font-size: 12px;
+	display:none;
+}
+#pwdCheck_1,#pwdCheck_2{
+	left:180px;
+	top:10px;
+}
+#newCheck_1{
+	left:180px;
+	top:10px;
+}
+#newCheck_2,#newCheck_3{
+	left:180px;
+	top:10px;
+}
+.course_yes,.course_no{
+	display:inline-block;
+	height:40%;
+	float: left;
+	margin:0 20px;
+}
+.course_yes{
+	width:40%;
+}
+.course_no{
+	width:50%;
+}
+.selectCourse{
+	width:60%;
+	background-color:whitesmoke;
+}
+#ssc{
+	margin:5px auto;
+	display:block;
+	width:100px;
+	border:1px solid transparent;
+	border-radius:10px;
+	background-color:blue;
+	color:white;
+}
+

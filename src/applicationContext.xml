@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util-2.5.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" default-lazy-init="true">
+
+	<context:component-scan base-package="com"/>
+	
+    <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    	<property name="url" value="jdbc:mysql://localhost:3306/db_stulnfo"/>
+    	<property name="username" value="root"/>
+    	<property name="password" value="678876"/>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    	<property name="dataSource" ref="datasource"/>
+    	<property name="hibernateProperties">
+    		<props>
+    			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+    			<prop key="hibernate.show_sql">true</prop>
+    			<prop key="hibernate.format_sql">true</prop>
+    		</props>
+    	</property>
+    	<property name="mappingResources">
+    		<list>
+    		    <value>com/entity/account.hbm.xml</value>
+    		    <value>com/entity/college.hbm.xml</value>
+    		    <value>com/entity/course.hbm.xml</value>
+    		    <value>com/entity/grade.hbm.xml</value>
+    		    <value>com/entity/log.hbm.xml</value>
+    		    <value>com/entity/major.hbm.xml</value>
+    		    <value>com/entity/role.hbm.xml</value>
+    		    <value>com/entity/Score.hbm.xml</value>
+    		    <value>com/entity/StuCour.hbm.xml</value>
+    			<value>com/entity/student.hbm.xml</value>
+    			<value>com/entity/teacher.hbm.xml</value>
+    			
+    			<value>com/entity/dean/Account1.hbm.xml</value>
+    		    <value>com/entity/dean/College1.hbm.xml</value>
+    		    <value>com/entity/dean/Course1.hbm.xml</value>
+    		    <value>com/entity/dean/Grade1.hbm.xml</value>
+    		    <value>com/entity/dean/Major1.hbm.xml</value>
+    		    <value>com/entity/dean/Role1.hbm.xml</value>
+    		    <value>com/entity/dean/Score1.hbm.xml</value>
+    			<value>com/entity/dean/Student1.hbm.xml</value>
+    			<value>com/entity/dean/Teacher1.hbm.xml</value>
+    		</list>
+    	</property>
+    </bean>
+    <!-- 声明事务管理 -->
+         <bean id="txManager" name="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+         <property name="sessionFactory" ref="sessionFactory"/> 
+         </bean>
+         <tx:advice id="txAdvice" transaction-manager="txManager">
+         <tx:attributes>
+         <tx:method name="update*" propagation="REQUIRED"/>
+         <tx:method name="add*" propagation="REQUIRED"/>
+         <tx:method name="delete*" propagation="REQUIRED"/>
+         <tx:method name="*" rollback-for="Exception" propagation="REQUIRED"/> 
+         </tx:attributes>
+         </tx:advice>
+         <aop:config proxy-target-class="true">
+         <aop:advisor advice-ref="txAdvice" pointcut="within(com.action.*)"/> 
+         </aop:config>
+ <!--<bean id="txManager" name="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="load*" propagation="REQUIRED"/>
+			<tx:method name="*" rollback-for="Exception" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:advisor advice-ref="txAdvice" pointcut="with(com.action.*)"/>
+	</aop:config>
+--></beans>
+
+
+

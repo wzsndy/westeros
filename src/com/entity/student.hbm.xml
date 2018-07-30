@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.Student" table="t_student">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"/>
+		</id>
+		<property name="nomber" type="integer" column="nom"/>
+		<property name="name" type="string" column="name"/>
+		<property name="birthday" type="string" column="birthday"/>
+		<property name="college_id" type="integer" column="college_id"/>
+		<property name="major_id" type="integer" column="major_id"/>
+		<property name="grade_id" type="integer" column="grade_id"/>
+	</class>
+</hibernate-mapping>

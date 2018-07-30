@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        <class name="com.entity.StuCour" table="t_stuCour">
+        <id name="id" type="integer" column="id">
+        <generator class="identity"/>
+        </id>
+        <property name="stu_no" type="long" column="stu_no"/>
+        <property name="course_id" type="integer" column="course_id"/>        
+        </class>
+        </hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.dean.Major1" table="t_major">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		<property name="text" type="string" column="text"/>
+		<property name="collegeId" type="integer" column="college_id"/>
+	</class>
+</hibernate-mapping>

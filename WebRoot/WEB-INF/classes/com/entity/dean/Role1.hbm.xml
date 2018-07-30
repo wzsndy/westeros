@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.dean.Role1" table="t_role">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="name" type="string" column="name"/>
+		<property name="text" type="string" column="text"/>
+		<property name="page" type="string" column="page"/>
+		<set name="Accounts" table="t_account" lazy="false" fetch="join">
+			<key column="role_id"/>
+			<one-to-many class="com.entity.dean.Account1"/>
+		</set>
+	</class>
+</hibernate-mapping>

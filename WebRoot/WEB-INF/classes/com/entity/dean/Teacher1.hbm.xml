@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.entity.dean.Teacher1" table="t_teacher">
+		<id name="id" type="integer" column="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="nom" type="integer" column="nom"/>
+		<property name="name" type="string" column="name"/>
+		<property name="manager" type="string" column="manager"/>
+		<many-to-one name="college" lazy="false" fetch="join" column="collegeId" class="com.entity.dean.College1"/>
+	</class>
+</hibernate-mapping>

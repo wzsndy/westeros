@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+	<!-- Intercept -->
+	<package name="intercept" extends="json-default">
+    	<interceptors>
+    		<interceptor name="myIntercept" class="com.intercept.LoginInterceptor"/>
+    		<interceptor-stack name="myStack">
+    			<interceptor-ref name="myIntercept"/>
+       	        <interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    	</interceptors>
+       	<default-interceptor-ref name="myStack"/>
+       	<global-results>
+       		<result name="error" type="redirectAction">
+       			<param name="namespace">/login</param>
+       			<param name="actionName">turnTo</param>
+       		</result>
+    	</global-results>
+    </package>
+    
+    <!-- Login -->
+	<package name="login" namespace="/login" extends="json-default">
+		<action name="login">
+			<result name="success">
+				/westeros.jsp
+			</result>
+		</action>
+		<action name="adminLandingRequest" class="westerosAction" method="loginAdmin">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">list</param>
+			</result>
+			<result name="xiaoyang">
+				/index.jsp
+			</result>	
+		</action>
+		<action name="landingRequest" class="westerosAction" method="checkLogin">
+			<result name="student" type="redirectAction">
+				<param name="namespace">/westeros</param>
+				<param name="actionName">student</param>
+			</result>
+			<result name="teacher" type="redirectAction">
+				<param name="namespace">/counsellor</param>
+				<param name="actionName">checkTeacher</param>
+			</result>
+			<result name="dean" type="redirectAction">
+				<param name="namespace">/deanPage</param>
+				<param name="actionName">findAllTeacher</param>
+			</result>
+			<result name="error" type="redirectAction">
+				login
+			</result>
+		</action>
+		<action name="turnTo" class="westerosAction" method="logout">
+			<result name="success">
+				/index.jsp
+			</result>
+		</action>
+		<action name="register">
+			<result name="success">
+				/register.jsp
+			</result>
+		</action>
+		<action name="logout">
+			<result name="success" type="redirectAction">
+				login
+			</result>
+		</action>
+		<action name="checkCreateStuAccount" class="westerosAction" method="checkCreateStuAccount">
+			<result name="success" type="json">
+				<param name="root">check</param>
+			</result>
+		</action>
+		<action name="createStuAccount" class="westerosAction" method="createStuAccount">
+			<result name="success">
+			/success.jsp
+			</result>
+			<result name="false">
+			/false.jsp
+			</result>
+		</action>
+	</package>
+	
+	<!-- Student -->
+	<package name="containt" namespace="/westeros" extends="intercept">
+		<action name="logout" class="westerosAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		<action name="help">
+			<result name="success">
+				/help.jsp
+			</result>
+		</action>
+		<action name="student">
+			<result name="success" type="redirectAction">checkStudent</result>
+		</action>
+		<action name="teacher">
+			<result name="success" type="redirectAction">
+				checkTeacher
+			</result>
+		</action>
+		<action name="checkTeacher" class="" method="">
+			
+		</action>
+		<action name="dean">
+			<result name="success">/deanPage.jsp</result>
+		</action>
+		<action name="admin">
+			<result name="success">/admin.jsp</result>
+		</action>
+		
+		<action name="checkStudent" class="westerosAction" method="findStudent">
+			<result name="success">
+				/student.jsp
+			</result>
+		</action>
+		<action name="modifyPassword" class="westerosAction" method="findStudentById">
+			<result name="success">
+				/updatePassword.jsp
+			</result>
+		</action>
+		<action name="updatePassword" class="westerosAction" method="updatePassword">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		<action name="score" class="westerosAction" method="findByPageScore">
+			<result name="success">
+				/StudentScore.jsp
+		  	</result>
+		</action>
+		<action name="sel" class="westerosAction" method="findCourse">
+			<result name="success">
+				/StudentSelectCourse.jsp
+			</result>
+		</action>
+		<action name="select" class="westerosAction" method="selectCourse">
+			<result name="success" type="redirectAction">
+				course
+			</result>
+		</action>
+		<action name="course" class="westerosAction" method="findSelectCourse">
+			<result name="success">
+				/personalCourse.jsp
+			</result>
+		</action>
+	</package>
+	
+	<!-- Admin -->
+	<package name="admin" namespace="/admin" extends="intercept">
+		<action name="list" class="westerosAction" method="getAdminAccount">
+			<result name="success">
+				/admin.jsp
+			</result>
+		</action>
+		<action name="teacher" class="westerosAction" method="findTeacherByPage">
+			<result name="success">
+				/adminTeacherList.jsp
+			</result>
+		</action>
+		<action name="updateAdminPassword" class="westerosAction" method="updateAdminPassword">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		<action name="saveTeacher" class="westerosAction" method="saveTeacher">
+			<result name="success" type="redirectAction">
+	 			teacher
+			</result>
+		</action>
+		<action name="checkCreateTeaAccount" class="westerosAction" method="checkTeaAccount">
+			<result name="success" type="json">
+				<param name="root">check</param>
+			</result>
+		</action>
+		<action name="createTeaAccount" class="westerosAction" method="createTeaAccount">
+			<result name="success" type="redirectAction">
+				teacher
+			</result>
+		</action>
+		<!-- 查看日志 -->
+		<action name="logDate" class="westerosAction" method="findLogDate">
+			<result name="success">
+				/logDate.jsp
+			</result>
+		</action>
+		<action name="logout" class="westerosAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- deanPage院长 -->
+    <package name="deanPage" namespace="/deanPage" extends="intercept">
+    	<!-- 信息界面 -->
+    	<action name="findAllTeacher" class="teacherAction" method="findAllTeacher">
+    		<result name="success">
+    			/dean/deanPage.jsp
+    		</result>
+    	</action>
+    	<!-- 修改密码确认操作 -->
+    	<action name="updateAccount2" class="teacherAction" method="updateAccount2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 进入修改密码界面 -->
+    	<action name="updateAccount" class="teacherAction" method="updateAccount">
+    		<result name="success">
+    			/dean/updateAccount.jsp
+    		</result>
+    	</action>
+    	<!-- 进入修改院长基本信息界面 -->
+    	<action name="updateTeacher" class="teacherAction" method="updateTeacher">
+    		<result name="success">
+    			/dean/updateTeacher.jsp
+    		</result>
+    	</action>
+    	<!-- 确认修改院长基本信息 -->
+    	<action name="updateTeacher2" class="teacherAction" method="updateTeacher2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 进入查看专业界面 -->
+    	<action name="findAMajor" class="teacherAction" method="findAMajor">
+    		<result name="success">
+    			/dean/major.jsp
+    		</result>
+    	</action>
+    	<!-- 进行添加专业操作 -->
+    	<action name="addMajro2" class="teacherAction" method="addMajro2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 进入修改专业界面 -->
+    	<action name="updateMajor" class="teacherAction" method="updateMajor">
+    		<result name="success">
+    			/dean/updateMajor.jsp
+    		</result>
+    	</action>
+    	<!-- 进行修改专业操作 -->
+    	<action name="updateMajor2" class="teacherAction" method="updateMajor2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 删除专业操作 -->
+    	<action name="deleteMajor" class="teacherAction" method="deleteMajor">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 进入班级界面 -->
+    	<action name="grade" class="teacherAction" method="grade">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/grade</param>
+    			<param name="actionName">findAllGrade</param>
+    		</result>
+    	</action>
+    	<!-- 退出和帮助 -->
+    	<action name="logout" class="westerosAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		<action name="help">
+			<result name="success">
+				/help.jsp
+			</result>
+		</action>
+		<!-- 进行班级添加操作 -->
+    	<action name="addGrade2" class="teacherAction" method="addGrade2">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/grade</param>
+    			<param name="actionName">findAllGrade</param>
+    		</result>
+    	</action>
+    </package>
+    
+    <!-- 班级界面操作 -->
+    <package name="grade" namespace="/grade" extends="intercept">
+    	<!-- 删除 班级操作 -->
+    	<action name="deleteGrade" class="teacherAction" method="deleteGrade">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllGrade</param>
+    		</result>
+    	</action>
+    	<!-- 确认修改班级操作 -->
+    	<action name="updateGrade2" class="teacherAction" method="updateGrade2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllGrade</param>
+    		</result>
+    	</action>
+    	<!-- 进入修改班级界面 -->
+    	<action name="updateGrade" class="teacherAction" method="updateGrade">
+    		<result name="success">
+    			/dean/updateGrade.jsp
+    		</result>
+    	</action>
+    	<!-- 进入班级界面 -->
+    	<action name="grade" class="teacherAction" method="grade">
+    		<result name="success" type="redirectAction">
+    			findAllGrade
+    		</result>
+    	</action>
+    	<!-- 查询所有班级 -->
+    	<action name="findAllGrade" class="teacherAction" method="findAllGrade">
+    		<result name="success">
+    			/dean/grade.jsp
+    		</result>
+    	</action>
+    	<!-- 进入查看对应班级的学生信息 -->
+    	<action name="findAllStudent" class="teacherAction" method="findAllStudent">
+    		<result name="success">
+    			/dean/gradeStudent.jsp
+    		</result>
+    	</action>
+    	<!-- 进行班级添加操作 -->
+    	<action name="addGrade2" class="teacherAction" method="addGrade2">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllGrade</param>
+    		</result>
+    	</action>
+    	<!-- 删除学生信息 -->
+    	<action name="deleteStudent" class="teacherAction" method="deleteStudent">
+    		<result name="success" type="redirectAction">
+    			<param name="actionName">findAllStudent</param>
+    		</result>
+    	</action>
+    	<!-- 进入院长基本信息界面 -->
+    	<action name="findAllTeacher">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/deanPage</param>
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    	<!-- 进入院长专业信息界面 -->
+    	<action name="findAMajor">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/deanPage</param>
+    			<param name="actionName">findAMajor</param>
+    		</result>
+    	</action>
+    	<!-- 进入修改密码界面 -->
+    	<action name="updateAccount">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/deanPage</param>
+    			<param name="actionName">updateAccount</param>
+    		</result>
+    	</action>
+    	<!-- 退出和帮助 -->
+    	<action name="logout" class="westerosAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		</action>
+		<action name="help">
+			<result name="success">
+				/help.jsp
+			</result>
+		</action>
+		<!-- 进行添加专业操作 -->
+    	<action name="addMajro2" class="teacherAction" method="addMajro2">
+    		<result name="success" type="redirectAction">
+    			<param name="namespace">/deanPage</param>
+    			<param name="actionName">findAllTeacher</param>
+    		</result>
+    	</action>
+    </package>
+    <!-- counsellor -->
+    <package name="counsellor" namespace="/counsellor" extends="intercept">
+   		<action name="updateaa" class="counsellorAction" method="update" > 
+			<result name="success" type="redirectAction"> 
+				checkTeacher
+		 </result> </action> 
+		<action name="teacher"> 
+			<result name="success" type="redirectAction">
+		 		checkTeacher
+		 	</result> 
+		</action> 
+		<!-- 查询对应班级的学生成绩 -->
+		<action name="gradeScore" class="gradeAction" method="gradeScore">
+			<result name="success">
+				/counsellor/counsellor2.jsp
+			</result>
+		</action>
+		<action name="checkTeacher"  class="counsellorAction" method="checkTeacher">
+			<result name="success">
+		  		/counsellor/counsellor.jsp
+		  	</result> 
+		</action>
+	 	<action name="modify" method="findStudentById" class="counsellorAction">
+	  		<result name="success"> 
+	  			/counsellor/update.jsp
+	   		</result>
+	    </action>   
+		<action name="findscore" method="findScore" class="counsellorAction"> 
+			<result name="success"> 
+				/counsellor/StudentScore2.jsp 
+		  	</result> 
+	 	</action> 
+		<action name="updatescore" method="findscoreBystu_no" class="counsellorAction"> 
+			   <result name="success"> 
+			   /counsellor/updateScore.jsp 
+			   </result>
+		</action> 
+		<action name="updatesave" method="updatesave" class="counsellorAction"> 
+			    <result name="success" type="redirectAction">
+			    <param name="namespace">/counsellor</param> 
+			    <param name="actionName">findscore</param>
+			    </result>
+		</action> 
+		<action name="addstudent" method="addStudent" class="counsellorAction"> 
+		        <result name="success" type="redirectAction"> 
+		        checkTeacher
+		  		</result>
+		</action> 
+		<action name="delete" method="deletedStudent" class="counsellorAction"> 
+		  		<result name="success" type="redirectAction">
+		     		<param name="namespace">/counsellor</param> 
+		     		<param name="actionName">checkTeacher</param> 
+		     	</result> 
+		  </action>
+		  <action name="logout" class="westerosAction" method="logout">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/login</param>
+				<param name="actionName">login</param>
+			</result>
+		  </action>
+		  <action name="help">
+			<result name="success">
+				/help.jsp
+			</result>
+		 </action>
+	</package>
+</struts>

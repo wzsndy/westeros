@@ -1,0 +1,185 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style:none;
+}
+.admin{
+	width:80%;
+	margin:0 auto;
+}
+.admin-head{
+	width:100%;
+	height:80px;
+	position:relative;
+	background-color: lightgoldenrodyellow;
+	border: 1px solid transparent;
+	border-radius:10px;
+}
+.logo{
+	width:60px;
+	height:60px;
+	border-radius:50%;
+	border:1px solid black;
+	position:absolute;
+	top:10px;
+	left:50px;
+	background: url(../img/dragon.jpg) -58px -8px / 184px 105px;
+}
+.title{
+	height:80px;
+	width:90%;
+	position:relative;
+	top:0px;
+	left:50px;
+	line-height:80px;
+	color:darkred;
+	text-align:center;
+	font-size:50;
+	font-family: fantasy;
+}
+.tool{
+	width:106px;
+	height:21px;
+	position:absolute;
+	right:5px;
+	top:55px;
+}
+.admin-body{
+	width:100%;
+	height:770px;
+	border:1px solid black;
+	margin:0 auto;
+	overflow:hidden;
+	background-color:floralwhite;
+}
+.admin-foot{
+	width:100%;
+	height:120px;
+	background-color:darkslategrey;
+}
+.admin-menu{
+	width:25%;
+	height:770px;
+	float:left;
+	border-right:2px solid darkblue;	
+	text-align:center;
+}
+.admin-content{
+	width:74%;
+	height:750px;
+	display:inline;
+	float:right;
+}
+.view,.action{
+	margin:0 auto;
+	width:100%;
+	border-bottom:1px solid royalblue;
+	font-size:16px;
+	line-height:45px;
+	background-color:beige;
+	opacity:.8;
+	color:darkgreen;
+	position:relative;
+}
+.view:hover{
+	opacity:1;
+	border-bottom:2px solid royalblue;
+}
+.action:hover{
+	opacity:1;
+	border-bottom:2px solid royalblue;
+}
+#view_down,#action_down{
+	width:0px;
+	height:0px;
+	position:relative;
+	top:14px;
+	left:6px;
+}
+#view_up,#action_up{
+	width:0px;
+	height:0px;
+	position:relative;
+	top:-12px;
+	left:6px;
+}
+#view_down,#action_down{
+	border-top:5px solid black;
+	border-left:5px solid transparent;
+	border-bottom:5px solid transparent;
+	border-right:5px solid transparent;
+}
+#view_up,#action_up{
+	border-top:5px solid transparent;
+	border-left:5px solid transparent;
+	border-bottom:5px solid black;
+	border-right:5px solid transparent;
+	display:none;
+}
+.ac_list,.view_list{
+	color:black;
+	font-size:14px;
+	display:none;
+}
+.ac_list ul li,.view_list ul li{
+	text-align:center;
+	margin:0 auto;
+	width:50%;
+	border-bottom:1px solid white;
+	cursor:pointer;
+}
+#welcom,#teacherList,#changePassword,#saveTeacherMessage,#createTeacherAccount{
+	width:65%;
+	margin:150px auto;
+	text-align:center;
+}
+#changePassword,#saveTeacherMessage,#createTeacherAccount{
+	display:none;
+}
+#pwdCheck_1,#pwdCheck_2,#newCheck_1,#newCheck_2,#newCheck_3{
+	width:110px;
+	font-size:12px;
+	color:orangered;
+	position:absolute;
+	display:none;
+}
+.password_input{
+	position:relative;
+}
+#pwdCheck_1,#pwdCheck_2{
+	left:180px;
+	top:2px;
+}
+#newCheck_1{
+	left:180px;
+	top:2px;
+}
+#newCheck_2,#newCheck_3{
+	left:180px;
+	top:2px;
+}
+.ssc{
+	margin:5px 0px;
+	display:inline-block;
+	width:80px;
+	border:1px solid transparent;
+	border-radius:10px;
+	background-color:blue;
+	color:white;
+}
+#teacherList table{
+	width:80%;
+	border:1px solid transparent;
+	border-collapse:collapse;
+}
+#teacherList table tr{
+	height:40px;
+	border-bottom: 1px solid papayawhip;
+}
+#teacherList table tr:hover{
+	background-color: papayawhip;
+}
+#teacherList table tr td{
+	text-align:center;
+	color:darkblue;
+}
